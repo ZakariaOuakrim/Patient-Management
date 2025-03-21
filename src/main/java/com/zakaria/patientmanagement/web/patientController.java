@@ -21,9 +21,13 @@ public class patientController {
     public String index(Model model, @RequestParam(name="page",defaultValue = "0") int page,
                                     @RequestParam(name="size", defaultValue = "4") int size){
         //List<Patient> patientList = patientRepositoy.findAll();
-        Page<Patient> patientList = patientRepositoy.findAll(PageRequest.of(page,size));
+        Page<Patient> pages = patientRepositoy.findAll(PageRequest.of(page,size));
 
-        model.addAttribute("patientList", patientList.getContent());
+        model.addAttribute("patientList", pages.getContent());
+        //nombre de pages
+        model.addAttribute("pages",new int[pages.getTotalPages()]);
+
+
         return "patients";
     }
 }

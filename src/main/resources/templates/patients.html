@@ -24,6 +24,11 @@
                 </tr>
                 </thead>
             </table>
+            <ul class="nav-pills">
+                <li th:each="page,status:${pages}">
+                    <a th:text="${status.index}"></a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
