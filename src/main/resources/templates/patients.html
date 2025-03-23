@@ -26,6 +26,9 @@
                     <td th:text="${p.birthDate}"></td>
                     <td th:text="${p.sick}"></td>
                     <td th:text="${p.score}"></td>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{delete(id=${p.id})}">Delete</a>
+                    </td>
                 </tr>
                 </thead>
             </table>
