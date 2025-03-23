@@ -27,7 +27,7 @@
                     <td th:text="${p.sick}"></td>
                     <td th:text="${p.score}"></td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{delete(id=${p.id})}">Delete</a>
+                        <a onclick="javascript:return confirm('Are you sure you want to delete this patient ?')" class="btn btn-danger" th:href="@{delete(id=${p.id})}">Delete</a>
                     </td>
                 </tr>
                 </thead>
