@@ -10,23 +10,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @AllArgsConstructor
-public class patientController {
+public class PatientController {
     private PatientRepositoy patientRepositoy;
 
     @GetMapping("/index")
     public String index(Model model, @RequestParam(name="page",defaultValue = "0") int page,
-                                    @RequestParam(name="size", defaultValue = "4") int size){
+                                    @RequestParam(name="size", defaultValue = "4") int size,
+                        @RequestParam(name="keyword", defaultValue = "") String keyword
+                        ){
         //List<Patient> patientList = patientRepositoy.findAll();
-        Page<Patient> pages = patientRepositoy.findAll(PageRequest.of(page,size));
+        //Page<Patient> pages = patientRepositoy.findAll(PageRequest.of(page,size));
+        Page<Patient> pages = patientRepositoy.findByNameContains(keyword,PageRequest.of(page,size));
 
         model.addAttribute("patientList", pages.getContent());
         //nombre de pages
         model.addAttribute("pages",new int[pages.getTotalPages()]);
         model.addAttribute("currentPage",page);
+
+        //save the keyword so we can show it in the frontend
+        model.addAttribute("keyword",keyword);
 
         return "patients";
     }
