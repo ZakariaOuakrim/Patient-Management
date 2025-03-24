@@ -60,13 +60,16 @@ mvn spring-boot:run
 # Screenshots
 
 ##### Patient List
-<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/patient_list.png" />
+<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/2.png" />
 
 ##### Add Patient
-<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/add_patient.png" />
+<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/3.png" />
+
+<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/4.png" />
+
 
 ##### Edit Patient
-<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/edit_patient.png" />
+<img src="https://raw.githubusercontent.com/ZakariaOuakrim/Patient-Management/master/src/main/resources/images/5.png" />
 
 ### Technologies Used
 
