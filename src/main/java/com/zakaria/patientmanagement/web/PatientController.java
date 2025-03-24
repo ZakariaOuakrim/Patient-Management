@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -48,8 +49,21 @@ public class PatientController {
     }
 
     @GetMapping("/formPatients")
-    public String formPatient(){
+    public String formPatient(Model model){
+        model.addAttribute("patient", new Patient());
+
         return "formPatients";
     }
+
+    @PostMapping(path = "/save")
+    public String save(Model model,Patient patient){
+        patientRepositoy.save(patient);
+        return "formPatients";
+    }
+
+
+
+
+
 
     }
