@@ -25,6 +25,7 @@ public class Patient {
     private String name;
     //to specify the date format
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
     private boolean sick;
     @DecimalMin("100")
