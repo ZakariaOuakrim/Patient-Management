@@ -47,4 +47,9 @@ public class PatientController {
         return "redirect:/index";
     }
 
+    @GetMapping("/formPatients")
+    public String formPatient(){
+        return "formPatients";
+    }
+
     }
