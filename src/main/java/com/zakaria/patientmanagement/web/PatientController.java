@@ -2,11 +2,13 @@ package com.zakaria.patientmanagement.web;
 
 import com.zakaria.patientmanagement.entities.Patient;
 import com.zakaria.patientmanagement.repositories.PatientRepositoy;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,7 +58,10 @@ public class PatientController {
     }
 
     @PostMapping(path = "/save")
-    public String save(Model model,Patient patient){
+    public String save(Model model, @Valid Patient patient, BindingResult bindingResult){
+        //if there are errors we return to the form
+        if(bindingResult.hasErrors()) return "formPatients";
+
         patientRepositoy.save(patient);
         return "formPatients";
     }
