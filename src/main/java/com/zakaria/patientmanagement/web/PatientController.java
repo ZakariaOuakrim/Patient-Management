@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PatientController {
     private PatientRepositoy patientRepositoy;
 
-    @GetMapping("/index")
+    @GetMapping("/user/index")
     public String index(Model model, @RequestParam(name="page",defaultValue = "0") int page,
                                     @RequestParam(name="size", defaultValue = "4") int size,
                         @RequestParam(name="keyword", defaultValue = "") String keyword
@@ -39,35 +39,35 @@ public class PatientController {
         return "patients";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/admin/delete")
     public String delete(Long id,String keyword,int page){
         patientRepositoy.deleteById(id);
-        return "redirect:/index?page="+page+"&keyword="+keyword;
+        return "redirect:/user/index?page="+page+"&keyword="+keyword;
     }
 
     @GetMapping("/")
     public String defaultRouting(){
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
 
-    @GetMapping("/formPatients")
+    @GetMapping("/admin/formPatients")
     public String formPatient(Model model){
         model.addAttribute("patient", new Patient());
 
         return "formPatients";
     }
 
-    @PostMapping(path = "/save")
+    @PostMapping(path = "/admin/save")
     public String save(Model model, @Valid Patient patient, BindingResult bindingResult,@RequestParam(defaultValue = "0") String keyword, @RequestParam(defaultValue = "0") int page){
         //if there are errors we return to the form
         if(bindingResult.hasErrors()) return "formPatients";
 
         //it is a new patient
         patientRepositoy.save(patient);
-        return "redirect:/index?page="+page+"&keyword="+keyword;
+        return "redirect:/user/index?page="+page+"&keyword="+keyword;
     }
 
-    @GetMapping("/editPatient")
+    @GetMapping("/admin/editPatient")
     public String editPatient(Model model,Long id, String keyword, int page){
         Patient patient = patientRepositoy.findById(id).orElse(null);
         if(patient == null) throw new RuntimeException("Patient not found");
@@ -76,10 +76,5 @@ public class PatientController {
         model.addAttribute("page",page);
         return "editPatient";
     }
-
-
-
-
-
 
     }
