@@ -31,7 +31,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Patients</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/user/formPatients}">New Patient</a></li>
+                        <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}" ><a class="dropdown-item" th:href="@{/user/formPatients}">New Patient</a></li>
                         <li><a class="dropdown-item" th:href="@{/user/index}">Search Patient</a></li>
                     </ul>
                 </li>
@@ -44,7 +44,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                     <ul class="dropdown-menu">
                         <li>
                             <form method="post" th:action="@{/logout}">
-                                <a type="submit" class="dropdown-item" >Logout</a>
+                                <button type="submit" class="dropdown-item" >Logout</button>
                             </form>
                         </li>
                     </ul>
