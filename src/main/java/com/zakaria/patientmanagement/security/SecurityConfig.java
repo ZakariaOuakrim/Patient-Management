@@ -31,7 +31,11 @@ public class SecurityConfig {
     // This method configures the security filter chain for the application.
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.formLogin();
+        httpSecurity.formLogin().loginPage("/login").permitAll();
+        httpSecurity.rememberMe();
+
+        httpSecurity.authorizeHttpRequests().requestMatchers("/webjars/**","/h2-console/**").permitAll();
+
         httpSecurity.authorizeHttpRequests().requestMatchers("/user/**").hasRole("USER");
         httpSecurity.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN");
 
